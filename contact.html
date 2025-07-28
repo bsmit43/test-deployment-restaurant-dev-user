@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Deployment Restaurant - restaurant</title>
+    <meta name="description" content="Test Deployment Restaurant - Modern tech menu options and dining experiences for the digital age. Innovative restaurant services to transform your business.">
+    <meta name="keywords" content="restaurant, technology, software, innovation, digital transformation">
+    <meta name="author" content="Test Deployment Restaurant">
+    <meta property="og:title" content="Test Deployment Restaurant - restaurant">
+    <meta property="og:description" content="Modern tech menu options and dining experiences for the digital age">
+    <meta property="og:type" content="website">
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <style>
+        :root {
+            --primary: #4361EE;
+            --primary-dark: #3A56D4;
+            --secondary: #7209B7;
+            --accent: #FF6B6B;
+            --dark: #121A2F;
+            --light: #F8F9FA;
+            --gray: #6c757d;
+            --success: #4CAF50;
+            --warning: #FFA726;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .bg-gradient {
+            background: var(--gradient-primary);
+        }
+        
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        
+        /* Buttons */
+        .btn {
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+            color: white;
+        }
+        
+        .btn-outline-primary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-lg {
+            padding: 16px 40px;
+            font-size: 18px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            padding: 20px 0;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 12px 0;
+        }
+        
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .navbar-nav .nav-link:hover, 
+        .navbar-nav .nav-link.active {
+            color: var(--primary);
+        }
+        
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 20px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: calc(100% - 40px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1)"/><stop offset="100%" style="stop-color:rgba(255,255,255,0)"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23grad)"/><circle cx="800" cy="300" r="150" fill="url(%23grad)"/><circle cx="400" cy="700" r="120" fill="url(%23grad)"/></svg>');
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .hero .lead {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Feature Grid */
+        .features {
+            padding: 120px 0;
+            background-color: white;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .feature-description {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.popular {
+            transform: scale(1.05);
+            border: 3px solid var(--primary);
+        }
+        
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .plan-period {
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+        
+        .plan-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .plan-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 120px 0;
+            background: white;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 24px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .author-info h4 {
+            margin: 0;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        
+        .author-info p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 120px 0;
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .cta p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .btn-light {
+            background: white;
+            color: var(--primary);
+            border: none;
+        }
+        
+        .btn-light:hover {
+            background: var(--light);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 80px 0 40px;
+            background: var(--dark);
+            color: white;
+        }
+        
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+
+✅ WHAT TO CHANGE (CONTENT ONLY):
+- Replace Test Deployment Restaurant with "Test Deployment Restaurant"
+- Replace restaurant with "restaurant"
+- Replace Test City with "Test City"
+- Replace ANY hardcoded business names (like "Grace Community Church", "FitnessPro Studio", "TechStart menu options and dining experiences", etc.) with "Test Deployment Restaurant"
+- Replace ALL instances of template business names with the actual business name "Test Deployment Restaurant"
+- Replace any hardcoded location references with "Test City"
+- Replace generic placeholder text with business-specific content
+- Make content more engaging and professional for this business type
+
+❌ WHAT TO NEVER CHANGE (STRUCTURE & DESIGN):
+- Any CSS classes, IDs, or styling attributes
+- HTML tags, structure, or element hierarchy
+- Any visual design elements or layout
+- Navigation links or menus
+- Any technical attributes or data attributes
+
+🔍 REPLACEMENT VALIDATION:
+- Ensure NO template business names remain in this chunk
+- Replace ALL hardcoded business references with "Test Deployment Restaurant"
+- Make content specific to restaurant industry
+
+🎯 OUTPUT REQUIREMENTS:
+- Return ONLY the enhanced chunk content
+- Preserve exact HTML structure and all attributes
+- Keep all CSS classes and IDs intact
+- Maintain chunk boundaries and structure
+- ALL business content must be completely customized for "Test Deployment Restaurant"
+
+ENHANCE THIS CHUNK NOW:
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg" data-ai-section="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="#" data-ai-editable="business-name">Test Deployment Restaurant</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-2" href="#cta">Get Started</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero" data-ai-section="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="animate-fade-in-up" data-ai-editable="hero-title">
+                            Transform Test Deployment Restaurant with <span class="text-gradient">Test Deployment Restaurant</span>
+                        </h1>
+                        <p class="lead animate-fade-in-up delay-100" data-ai-editable="hero-subtitle">
+                            Cutting-edge restaurant menu options and dining experiences that drive growth, efficiency, and innovation. 
+                            Join thousands of companies already transforming their operations.
+                        </p>
+                        <div class="animate-fade-in-up delay-200">
+                            <a href="#pricing" class="btn btn-light btn-lg me-3">Start Free Trial</a>
+                            <a href="#features" class="btn btn-outline-light btn-lg">Learn More</a>
+                        </div>
+                        <div class="hero-stats animate-fade-in-up delay-300">
+                            <div class="stat-item">
+                                <span class="stat-number">10k+</span>
+                                <span class="stat-label">Active Users</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">99.9%</span>
+                                <span class="stat-label">Uptime</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="animate-float">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Modern Technology Dashboard" 
+                             class="img-fluid rounded-3 shadow-lg"
+                             data-ai-editable="hero-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features" data-ai-section="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-4 fw-bold" data-ai-editable="features-title">Powerful Features for Modern Businesses</h2>
+                    <p class="lead text-muted" data-ai-editable="features-subtitle">
+                        Everything you need to streamline operations and accelerate growth
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-ai-component="feature-card">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="feature-title" data-ai-editable="feature-1-title">Lightning Fast</h3>
+                        <p class="feature-description" data-ai-editable="feature-1-description">
+                            Optimized for speed and performance. Get results in milliseconds, not minutes.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-ai-component="feature-card">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title" data-ai-editable="feature-2-title">Bank-Level Security</h3>
+                        <p class="feature-description" data-ai-editable="feature-2-description">
+                            End-to-end encryption and advanced security measures protect your data 24/7.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-ai-component="feature-card">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title" data-ai-editable="feature-3-title">Real-Time Analytics</h3>
+                        <p class="feature-description" data-ai-editable="feature-3-description">
+                            Monitor performance with detailed insights and actionable analytics.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-ai-component="feature-card">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title" data-ai-editable="feature-4-title">Team Collaboration</h3>
+                        <p class="feature-description" data-ai-editable="feature-4-description">
+                            Work together seamlessly with advanced collaboration tools and workflows.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-ai-component="feature-card">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3 class="feature-title" data-ai-editable="feature-5-title">Easy Integration</h3>
+                        <p class="feature-description" data-ai-editable="feature-5-description">
+                            Connect with 1000+ apps and services through our robust API ecosystem.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-ai-component="feature-card">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="feature-title" data-ai-editable="feature-6-title">Mobile First</h3>
+                        <p class="feature-description" data-ai-editable="feature-6-description">
+                            Access your dashboard anywhere with our responsive mobile-first design.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing" data-ai-section="pricing">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-4 fw-bold" data-ai-editable="pricing-title">Simple, Transparent Pricing</h2>
+                    <p class="lead text-muted" data-ai-editable="pricing-subtitle">
+                        Choose the perfect plan for your business needs
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4" data-ai-component="pricing-card">
+                    <div class="pricing-card">
+                        <div class="plan-name">Starter</div>
+                        <div class="plan-price">$29</div>
+                        <div class="plan-period">per month</div>
+                        <ul class="plan-features">
+                            <li>Up to 1,000 users</li>
+                            <li>10GB storage</li>
+                            <li>Basic analytics</li>
+                            <li>Email support</li>
+                            <li>Mobile app access</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary w-100">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-ai-component="pricing-card">
+                    <div class="pricing-card popular">
+                        <div class="plan-name">Professional</div>
+                        <div class="plan-price">$79</div>
+                        <div class="plan-period">per month</div>
+                        <ul class="plan-features">
+                            <li>Up to 10,000 users</li>
+                            <li>100GB storage</li>
+                            <li>Advanced analytics</li>
+                            <li>Priority support</li>
+                            <li>API access</li>
+                            <li>Custom integrations</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary w-100">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-ai-component="pricing-card">
+                    <div class="pricing-card">
+                        <div class="plan-name">Enterprise</div>
+                        <div class="plan-price">$199</div>
+                        <div class="plan-period">per month</div>
+                        <ul class="plan-features">
+                            <li>Unlimited users</li>
+                            <li>Unlimited storage</li>
+                            <li>Real-time analytics</li>
+                            <li>24/7 phone support</li>
+                            <li>Custom development</li>
+                            <li>Dedicated account manager</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary w-100">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials" data-ai-section="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-4 fw-bold" data-ai-editable="testimonials-title">What Our Customers Say</h2>
+                    <p class="lead text-muted" data-ai-editable="testimonials-subtitle">
+                        Don't just take our word for it
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4" data-ai-component="testimonial-card">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Test Deployment Restaurant has completely transformed our workflow. The intuitive interface and powerful features have increased our productivity by 300%."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SM</div>
+
+✅ WHAT TO CHANGE (CONTENT ONLY):
+- Replace Test Deployment Restaurant with "Test Deployment Restaurant"
+- Replace restaurant with "restaurant"
+- Replace Test City with "Test City"
+- Replace ANY hardcoded business names (like "Grace Community Church", "FitnessPro Studio", "TechStart menu options and dining experiences", etc.) with "Test Deployment Restaurant"
+- Replace ALL instances of template business names with the actual business name "Test Deployment Restaurant"
+- Replace any hardcoded location references with "Test City"
+- Replace generic placeholder text with business-specific content
+- Make content more engaging and professional for this business type
+
+❌ WHAT TO NEVER CHANGE (STRUCTURE & DESIGN):
+- Any CSS classes, IDs, or styling attributes
+- HTML tags, structure, or element hierarchy
+- Any visual design elements or layout
+- Navigation links or menus
+- Any technical attributes or data attributes
+
+🔍 REPLACEMENT VALIDATION:
+- Ensure NO template business names remain in this chunk
+- Replace ALL hardcoded business references with "Test Deployment Restaurant"
+- Make content specific to restaurant industry
+
+🎯 OUTPUT REQUIREMENTS:
+- Return ONLY the enhanced chunk content
+- Preserve exact HTML structure and all attributes
+- Keep all CSS classes and IDs intact
+- Maintain chunk boundaries and structure
+- ALL business content must be completely customized for "Test Deployment Restaurant"
+
+ENHANCE THIS CHUNK NOW:
+                            <div class="author-info">
+                                <h4>Sarah Martinez</h4>
+                                <p>CEO, TechCorp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-ai-component="testimonial-card">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "The customer support is exceptional. Any issue we've had has been resolved within minutes. Highly recommended!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <h4>James Davis</h4>
+                                <p>CTO, InnovateLabs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-ai-component="testimonial-card">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Security was our main concern, and Test Deployment Restaurant exceeded our expectations. Bank-level encryption gives us peace of mind."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AR</div>
+                            <div class="author-info">
+                                <h4>Alex Rodriguez</h4>
+                                <p>CISO, SecureFlow</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta" data-ai-section="cta">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 data-ai-editable="cta-title">Ready to Transform Your Business?</h2>
+                    <p data-ai-editable="cta-subtitle">
+                        Join thousands of companies already using Test Deployment Restaurant to drive growth and innovation.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="#" class="btn btn-light btn-lg">Start Free Trial</a>
+                        <a href="#" class="btn btn-outline-light btn-lg">Schedule Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer" data-ai-section="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-brand" data-ai-editable="footer-brand">Test Deployment Restaurant</div>
+                    <p class="text-muted mb-4" data-ai-editable="footer-description">
+                        Transforming businesses through innovative restaurant solutions. 
+                        Built for the modern enterprise.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-primary"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-primary"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-primary"><i class="fab fa-github fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="text-white mb-3">Product</h5>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="text-white mb-3">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="text-white mb-3">Support</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Status</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="text-white mb-3">Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Licenses</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Test Deployment Restaurant. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate-fade-in-up');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        animateElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            observer.observe(el);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Pricing card selection
+        document.querySelectorAll('.pricing-card .btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const planName = this.closest('.pricing-card').querySelector('.plan-name').textContent;
+                alert(`You selected the ${planName} plan! This would redirect to checkout.`);
+            });
+        });
+    </script>
+
+    <!-- Universal Form Handler -->
+    <script>
+      window.FORM_HANDLER_CONFIG = {
+        apiEndpoint: 'https://genmysite.com/api/forms/submit',
+        websiteId: null,
+        recaptchaSiteKey: null,
+        debug: false
+      };
+    </script>
+    <script src="/js/form-handler.js" defer></script>
+</body>
+</html>
